@@ -6,7 +6,7 @@ public class Item {
     private int id;
     private String name;
     private String description;
-    private int startPrice;
+    private float startPrice;
 
     public Item(String name, String description, int startPrice) {
         this.name = name;
@@ -22,5 +22,9 @@ public class Item {
     public boolean matchesQuery(String query) {
         return description.contains(query)
                 || name.matches(query);
+    }
+
+    public float getStartPrice() {
+        return startPrice;
     }
 }

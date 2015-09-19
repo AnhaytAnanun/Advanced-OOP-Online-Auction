@@ -1,6 +1,7 @@
 package com.mnr.auction.user;
 
 import com.mnr.auction.card.Card;
+import com.mnr.auction.card.CardType;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -25,19 +26,29 @@ public class UserCatalog {
         return null;
     }
 
-    public void addCard(Date date, String number, String type, String token){
-        for (User user : users) {
-            if (user.canAuth(token)) {
-                user.addCard(date, number, type);
-            }
+    public void addCard(Date date, int number, CardType type, String token){
+        User user = getUser(token);
+
+        if (user != null) {
+            user.addCard(date, number, type);
         }
     }
 
     public void logOut(String token) {
+        User user = getUser(token);
+        
+        if (user != null) {
+            user.logOut();
+        }
+    }
+
+    public User getUser(String token) {
         for (User user : users) {
             if (user.canAuth(token)) {
-                user.logOut();
+                return user;
             }
         }
+
+        return null;
     }
 }

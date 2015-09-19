@@ -15,17 +15,24 @@ public class Auction {
 
     public Auction(Date startDate, Date endDate, Item item) {
         this.item = item;
-        this.bid = 0;
+        this.bid = item.getStartPrice();
         this.user = null;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public void placeBid (User user) {
-
+    public void placeBid (User user, float bid) {
+        if (bid > this.bid) {
+            this.user = user;
+            this.bid = bid;
+        }
     }
 
     public void getStatus () {
 
+    }
+
+    public int getItemId() {
+        return this.item.getId();
     }
 }

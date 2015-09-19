@@ -2,8 +2,10 @@ package com.mnr.auction;
 
 import com.mnr.auction.archive.Archive;
 import com.mnr.auction.auction.AuctionList;
+import com.mnr.auction.card.CardType;
 import com.mnr.auction.item.Item;
 import com.mnr.auction.store.Store;
+import com.mnr.auction.user.User;
 import com.mnr.auction.user.UserCatalog;
 
 import java.util.ArrayList;
@@ -72,9 +74,18 @@ public class Dispatcher {
         userCatalog.logOut(token);
     }
 
-    public void addCard(Date date, String number, String type, String token) {
+    public void addCard(Date date, int number, CardType type, String token) {
         userCatalog.addCard(date, number, type, token);
     }
+
+    public void placeBid (int itemId, String token, float bid){
+        User user = userCatalog.getUser(token);
+
+        if (user != null) {
+            auctionList.placeBid(itemId, user, bid);
+        }
+    }
+
 
     /**
      * Auction Methods
