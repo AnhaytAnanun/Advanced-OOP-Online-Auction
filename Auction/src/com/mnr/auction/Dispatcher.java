@@ -50,4 +50,20 @@ public class Dispatcher {
     public void addItem(int itemTypeId, String name, String description, int startPrice) {
         store.addItem(itemTypeId, name, description, startPrice);
     }
+
+    /**
+     * User Methods
+     */
+
+    public boolean register(String email, String username, String password, String address) {
+        return userCatalog.addUser(email, username, password, address);
+    }
+
+    public String logIn(String username, String password) {
+        return userCatalog.logIn(username, password);
+    }
+
+    public void logOut(String token) {
+        userCatalog.logOut(token);
+    }
 }
