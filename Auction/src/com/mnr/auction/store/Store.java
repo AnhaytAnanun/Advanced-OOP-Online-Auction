@@ -3,6 +3,7 @@ package com.mnr.auction.store;
 import com.mnr.auction.item.Item;
 import com.mnr.auction.item.ItemType;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Store {
@@ -25,6 +26,18 @@ public class Store {
                 itemType.addItem(item);
             }
         }
+    }
+
+    public ArrayList<Item> searchItems(int itemTypeId, String query) {
+        ArrayList<Item> items = new ArrayList<>();
+
+        for (ItemType itemType : itemTypes) {
+            if (itemType.getId() == itemTypeId) {
+                items.addAll(itemType.getItemsByQuery(query));
+            }
+        }
+
+        return items;
     }
 
     public Item getItemById(int itemId) {

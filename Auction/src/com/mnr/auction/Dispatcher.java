@@ -6,6 +6,7 @@ import com.mnr.auction.item.Item;
 import com.mnr.auction.store.Store;
 import com.mnr.auction.user.UserCatalog;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Dispatcher {
@@ -51,6 +52,9 @@ public class Dispatcher {
         store.addItem(itemTypeId, name, description, startPrice);
     }
 
+    public ArrayList<Item> searchItems(int itemTypeId, String query) {
+        return store.searchItems(itemTypeId, query);
+    }
 
     /**
      * User Methods

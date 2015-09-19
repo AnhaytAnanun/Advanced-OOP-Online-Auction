@@ -18,4 +18,9 @@ public class Item {
     public int getId() {
         return id;
     }
+
+    public boolean matchesQuery(String query) {
+        return description.contains(query)
+                || name.matches(query);
+    }
 }

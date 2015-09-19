@@ -19,8 +19,20 @@ public class ItemType extends Object {
         items.add(item);
     }
 
+    public ArrayList<Item> getItemsByQuery(String query) {
+        ArrayList<Item> items = new ArrayList<>();
+
+        for (Item item : this.items) {
+            if (item.matchesQuery(query)) {
+                items.add(item);
+            }
+        }
+
+        return items;
+    }
+
     public Item getItemById(int itemId) {
-        for (Item item : items) {
+        for (Item item : this.items) {
             if (item.getId() == itemId) {
                 return item;
             }
@@ -30,6 +42,6 @@ public class ItemType extends Object {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 }
