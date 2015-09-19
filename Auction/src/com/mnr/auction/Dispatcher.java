@@ -38,4 +38,12 @@ public class Dispatcher {
 
         return sharedDispatcher;
     }
+
+    /**
+     * User Methods
+     */
+
+    public boolean register(String email, String username, String password, String address) {
+        return userCatalog.addUser(email, username, password, address);
+    }
 }
