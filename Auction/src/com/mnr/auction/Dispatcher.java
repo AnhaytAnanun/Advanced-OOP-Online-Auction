@@ -38,4 +38,16 @@ public class Dispatcher {
 
         return sharedDispatcher;
     }
+
+    /**
+     * Store Methods
+     */
+
+    public void addItemType(String name) {
+        store.addItemType(name);
+    }
+
+    public void addItem(int itemTypeId, String name, String description, int startPrice) {
+        store.addItem(itemTypeId, name, description, startPrice);
+    }
 }
