@@ -2,12 +2,12 @@ package com.mnr.auction;
 
 import com.mnr.auction.archive.Archive;
 import com.mnr.auction.auction.AuctionList;
+import com.mnr.auction.item.Item;
 import com.mnr.auction.store.Store;
 import com.mnr.auction.user.UserCatalog;
 
-/**
- * Created by anhaytananun on 19.09.15.
- */
+import java.util.Date;
+
 public class Dispatcher {
     private static Dispatcher sharedDispatcher;
 
@@ -65,5 +65,15 @@ public class Dispatcher {
 
     public void logOut(String token) {
         userCatalog.logOut(token);
+    }
+
+    /**
+     * Auction Methods
+     */
+
+    public void startAuction(Date startDate, Date endDate, int itemId) {
+        Item item = store.getItemById(itemId);
+
+        auctionList.startAuction(startDate, endDate, item);
     }
 }

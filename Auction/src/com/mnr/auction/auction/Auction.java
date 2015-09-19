@@ -1,20 +1,31 @@
 package com.mnr.auction.auction;
 
+import com.mnr.auction.item.Item;
 import com.mnr.auction.user.User;
 
-public class Auction {
+import java.util.Date;
 
+public class Auction {
     private int id;
     private float bid;
-    private String user;
-    private String startDate;
-    private String endDate;
-    private boolean item;
+    private User user;
+    private Date startDate;
+    private Date endDate;
+    private Item item;
 
-    public void placeBid (User user){
+    public Auction(Date startDate, Date endDate, Item item) {
+        this.item = item;
+        this.bid = 0;
+        this.user = null;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    public void placeBid (User user) {
 
     }
-    public void getStatus (){
+
+    public void getStatus () {
 
     }
 }

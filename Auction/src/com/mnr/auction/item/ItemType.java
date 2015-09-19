@@ -2,9 +2,6 @@ package com.mnr.auction.item;
 
 import java.util.ArrayList;
 
-/**
- * Created by Melkon on 19/09/2015.
- */
 public class ItemType extends Object {
     private static int idCounter = 0;
 
@@ -20,6 +17,16 @@ public class ItemType extends Object {
 
     public void addItem(Item item) {
         items.add(item);
+    }
+
+    public Item getItemById(int itemId) {
+        for (Item item : items) {
+            if (item.getId() == itemId) {
+                return item;
+            }
+        }
+
+        return null;
     }
 
     public int getId() {

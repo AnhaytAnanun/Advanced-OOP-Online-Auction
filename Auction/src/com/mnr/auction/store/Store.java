@@ -5,9 +5,6 @@ import com.mnr.auction.item.ItemType;
 
 import java.util.HashSet;
 
-/**
- * Created by Melkon on 19/09/2015.
- */
 public class Store {
     private HashSet<ItemType> itemTypes;
 
@@ -28,5 +25,17 @@ public class Store {
                 itemType.addItem(item);
             }
         }
+    }
+
+    public Item getItemById(int itemId) {
+        for (ItemType itemType : itemTypes) {
+            Item item = itemType.getItemById(itemId);
+
+            if (item != null) {
+                return item;
+            }
+        }
+
+        return null;
     }
 }

@@ -2,9 +2,6 @@ package com.mnr.auction.user;
 
 import java.util.HashSet;
 
-/**
- * Created by anhaytananun on 19.09.15.
- */
 public class UserCatalog {
     private HashSet<User> users;
 

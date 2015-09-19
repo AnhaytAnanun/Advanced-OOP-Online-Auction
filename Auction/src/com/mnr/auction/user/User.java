@@ -2,9 +2,6 @@ package com.mnr.auction.user;
 
 import java.util.UUID;
 
-/**
- * Created by anhaytananun on 19.09.15.
- */
 public class User {
     private static int idCounter = 0;
 
