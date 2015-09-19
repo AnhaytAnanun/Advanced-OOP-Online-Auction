@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.UUID;
 
-
 public class User {
     private static int idCounter = 0;
 

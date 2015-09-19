@@ -2,9 +2,6 @@ package com.mnr.auction.card;
 
 import java.util.Date;
 
-/**
- * Created by anhaytananun on 19.09.15.
- */
 public class Card {
 
     private int id;

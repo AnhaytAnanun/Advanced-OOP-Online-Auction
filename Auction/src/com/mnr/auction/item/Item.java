@@ -1,8 +1,5 @@
 package com.mnr.auction.item;
 
-/**
- * Created by Melkon on 19/09/2015.
- */
 public class Item {
     private int idCounter = 0;
 
@@ -16,5 +13,9 @@ public class Item {
         this.description = description;
         this.startPrice = startPrice;
         this.id = idCounter++;
+    }
+
+    public int getId() {
+        return id;
     }
 }
