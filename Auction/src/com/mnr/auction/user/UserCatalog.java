@@ -1,10 +1,10 @@
 package com.mnr.auction.user;
 
+import com.mnr.auction.card.Card;
+
+import java.util.Date;
 import java.util.HashSet;
 
-/**
- * Created by anhaytananun on 19.09.15.
- */
 public class UserCatalog {
     private HashSet<User> users;
 
@@ -23,6 +23,14 @@ public class UserCatalog {
         }
 
         return null;
+    }
+
+    public void addCard(Date date, String number, String type, String token){
+        for (User user : users) {
+            if (user.canAuth(token)) {
+                user.addCard(date, number, type);
+            }
+        }
     }
 
     public void logOut(String token) {

@@ -1,10 +1,13 @@
 package com.mnr.auction.user;
 
+import com.mnr.auction.card.Card;
+import com.mnr.auction.card.CardType;
+
+import java.util.Date;
+import java.util.HashSet;
 import java.util.UUID;
 
-/**
- * Created by anhaytananun on 19.09.15.
- */
+
 public class User {
     private static int idCounter = 0;
 
@@ -16,6 +19,7 @@ public class User {
     private boolean status;
     private boolean canParticipate;
     private String token;
+    private HashSet<Card> cards;
 
     public User(String email, String username, String password, String address) {
         this.email = email;
@@ -47,7 +51,10 @@ public class User {
         this.token = null;
     }
 
-    public void addCard() {
+    public void addCard(Date date, int number, CardType type) {
+        Card card = new Card(date, number, type);
+
+        cards.add(card);
     }
 
     public void getCarts() {

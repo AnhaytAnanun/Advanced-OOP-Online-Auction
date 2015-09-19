@@ -5,9 +5,6 @@ import com.mnr.auction.auction.AuctionList;
 import com.mnr.auction.store.Store;
 import com.mnr.auction.user.UserCatalog;
 
-/**
- * Created by anhaytananun on 19.09.15.
- */
 public class Dispatcher {
     private static Dispatcher sharedDispatcher;
 
@@ -51,6 +48,7 @@ public class Dispatcher {
         store.addItem(itemTypeId, name, description, startPrice);
     }
 
+
     /**
      * User Methods
      */
@@ -66,4 +64,12 @@ public class Dispatcher {
     public void logOut(String token) {
         userCatalog.logOut(token);
     }
+
+    public void addCard(String date, String number, String type, String token) {
+        userCatalog.addCard(date, number, type, token);
+    }
+
+
+
+
 }
