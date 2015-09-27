@@ -11,14 +11,18 @@ import com.mnr.auction.user.UserCatalog;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Logger;
 
 public class Dispatcher {
+    private final Logger LOGGER = Logger.getLogger(UserCatalog.class.getName());
+
     private static Dispatcher sharedDispatcher;
 
     private Archive archive;
     private AuctionList auctionList;
     private UserCatalog userCatalog;
     private Store store;
+    private String winnerToken;
 
     /**
      * Constructor Methods
@@ -80,12 +84,16 @@ public class Dispatcher {
          
     }
 
-    public void placeBid (int itemId, String token, float bid){
+    public boolean placeBid (int itemId, String token, float bid){
         User user = userCatalog.getUser(token);
 
-        if (user != null) {
-            auctionList.placeBid(itemId, user, bid);
+        if (user == null) {
+            LOGGER.warning("NO USER FOUND");
+
+            return false;
         }
+
+        return auctionList.placeBid(itemId, user, bid);
     }
 
 

@@ -1,17 +1,37 @@
 package com.mnr.auction.user;
 
-import com.mnr.auction.card.Card;
 import com.mnr.auction.card.CardType;
+import sun.rmi.runtime.Log;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.logging.Logger;
 
 public class UserCatalog {
-    private HashSet<User> users;
+    private final Logger LOGGER = Logger.getLogger(UserCatalog.class.getName());
+
+    private ArrayList<User> users;
+
+    public UserCatalog() {
+        users = new ArrayList<>();
+    }
 
     public boolean addUser(String email, String username, String password, String address) {
         User user = new User(email, username, password, address);
-        return users.add(user);
+
+        for (User existingUser : users) {
+            if (user.equals(existingUser)) {
+                LOGGER.warning("USER ALREADY EXISTS");
+
+                return false;
+            }
+        }
+
+        LOGGER.warning("USER REGISTERED");
+
+        users.add(user);
+
+        return true;
     }
 
     public String logIn(String username, String password) {
@@ -29,17 +49,25 @@ public class UserCatalog {
     public void addCard(Date date, int number, CardType type, String token){
         User user = getUser(token);
 
-        if (user != null) {
-            user.addCard(date, number, type);
+        if (user == null) {
+            LOGGER.warning("NO USER FOUND");
+
+            return;
         }
+
+        user.addCard(date, number, type);
     }
 
     public void logOut(String token) {
         User user = getUser(token);
         
-        if (user != null) {
-            user.logOut();
+        if (user == null) {
+            LOGGER.warning("NO USER FOUND");
+
+            return;
         }
+
+        user.logOut();
     }
 
     public User getUser(String token) {

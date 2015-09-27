@@ -4,8 +4,11 @@ import com.mnr.auction.item.Item;
 import com.mnr.auction.user.User;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
 public class Auction {
+    Logger LOGGER = Logger.getLogger(Auction.class.getName());
+
     private int id;
     private float bid;
     private User user;
@@ -21,26 +24,23 @@ public class Auction {
         this.endDate = endDate;
     }
 
-    public void placeBid (User user, float bid) {
-        if (bid > this.bid && getStatus() == AuctionStatus.Started) {
+    synchronized public boolean placeBid (User user, float bid) {
+        if (bid > this.bid) {
             this.user = user;
             this.bid = bid;
+
+            LOGGER.info("BID PLACED");
+
+            return true;
         }
+
+        LOGGER.warning("INVALID BID");
+
+        return false;
     }
 
-    public AuctionStatus getStatus () {
-        Date date = new Date();
-        AuctionStatus status;
+    public void getStatus () {
 
-        if(date.before(startDate)) {
-            status = AuctionStatus.NotStarted;
-        } else if (date.after(endDate)) {
-            status = AuctionStatus.Ended;
-        } else {
-            status = AuctionStatus.Started;
-        }
-
-        return status;
     }
 
     public int getItemId() {
