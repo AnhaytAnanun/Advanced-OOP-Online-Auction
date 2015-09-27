@@ -22,19 +22,24 @@ public class Auction {
     }
 
     public void placeBid (User user, float bid) {
-        if (bid > this.bid) {
+        if (bid > this.bid && getStatus() == AuctionStatus.Started) {
             this.user = user;
             this.bid = bid;
         }
     }
 
-    public void getStatus () {
-
+    public AuctionStatus getStatus () {
         Date date = new Date();
-        if(startDate.before(new Date()) && endDate.after(new Date()))
-        {
+        AuctionStatus status;
+
+        if(date.before(startDate)) {
+            status = AuctionStatus.NotStarted;
+        } else if (date.after(endDate)) {
             status = AuctionStatus.Ended;
+        } else {
+            status = AuctionStatus.Started;
         }
+
         return status;
     }
 
