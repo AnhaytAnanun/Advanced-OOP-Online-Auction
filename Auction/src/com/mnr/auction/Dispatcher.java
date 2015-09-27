@@ -77,6 +77,7 @@ public class Dispatcher {
 
     public void addCard(Date date, int number, CardType type, String token) {
         userCatalog.addCard(date, number, type, token);
+         
     }
 
     public void placeBid (int itemId, String token, float bid){
