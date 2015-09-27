@@ -72,7 +72,7 @@ public class Dispatcher {
     }
 
     public String logIn(String username, String password) {
-        return userCatalog.logIn(username, password);  
+        return userCatalog.logIn(username, password);
     }
 
     public void logOut(String token) {
