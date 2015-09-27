@@ -30,6 +30,12 @@ public class Auction {
 
     public void getStatus () {
 
+        Date date = new Date();
+        if(startDate.before(new Date()) && endDate.after(new Date()))
+        {
+            status = AuctionStatus.Ended;
+        }
+        return status;
     }
 
     public int getItemId() {

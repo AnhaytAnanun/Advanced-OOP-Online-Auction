@@ -19,6 +19,10 @@ public class ItemType extends Object {
         items.add(item);
     }
 
+    public void removeItem(Item item) {
+        items.remove(item);
+    }
+
     public ArrayList<Item> getItemsByQuery(String query) {
         ArrayList<Item> items = new ArrayList<>();
 

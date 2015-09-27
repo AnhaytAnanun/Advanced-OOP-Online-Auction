@@ -28,5 +28,11 @@ public class AuctionList {
     }
 
     public void closeAuction() {
+        for (Auction auction : auctions) {
+            if (auction.getStatus() == AuctionStatus.Ended) {
+
+            }
+
+        }
     }
 }
