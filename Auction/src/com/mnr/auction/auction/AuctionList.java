@@ -42,7 +42,7 @@ public class AuctionList {
         auctions.add(auction);
     }
 
-    public ArrayList<Auction> closeAuction() {
+    public synchronized ArrayList<Auction> closeAuction() {
         ArrayList<Auction> closedAuctions = new ArrayList<>();
 
         for (Auction auction : auctions) {
@@ -53,6 +53,7 @@ public class AuctionList {
                 user.getCard().makePayment();
 
                 closedAuctions.add(auction);
+                auctions.remove(auction);
             }
         }
 

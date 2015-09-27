@@ -43,6 +43,7 @@ public class Dispatcher {
                         ArrayList<Auction> closedAuctions = auctionList.closeAuction();
 
                         for (Auction auction : closedAuctions) {
+                            archive.addRecord(auction.getItemId(), auction.getUser().getId(), auction.getBid());
                         }
                     }
                 } catch (InterruptedException e) {

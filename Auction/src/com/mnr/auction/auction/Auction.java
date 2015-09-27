@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 public class Auction {
     Logger LOGGER = Logger.getLogger(Auction.class.getName());
 
+    private static int idGenerator = 0;
+
     private int id;
     private float bid;
     private User user;
@@ -22,6 +24,7 @@ public class Auction {
         this.user = null;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.id = idGenerator++;
     }
 
     synchronized public boolean placeBid (User user, float bid) {
@@ -60,5 +63,9 @@ public class Auction {
 
     public int getItemId() {
         return this.item.getId();
+    }
+
+    public float getBid() {
+        return bid;
     }
 }

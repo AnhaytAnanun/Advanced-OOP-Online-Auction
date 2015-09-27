@@ -65,6 +65,10 @@ public class User {
         return card;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public boolean canAuth(String token) {
         return this.token != null && this.token.equals(token)
                 && this.status;
