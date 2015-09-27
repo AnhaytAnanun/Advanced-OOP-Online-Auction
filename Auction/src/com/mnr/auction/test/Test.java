@@ -8,6 +8,10 @@ public class Test {
          * Create System
          */
 
-        Dispatcher dispatcher = Dispatcher.sharedDispatcher();
+    }
+
+    public static void addItemType() {
+        Dispatcher.sharedDispatcher().addItemType("Picture");
+        Dispatcher.sharedDispatcher().addItemType("Picture");
     }
 }

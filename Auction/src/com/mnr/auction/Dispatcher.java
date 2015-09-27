@@ -4,6 +4,7 @@ import com.mnr.auction.archive.Archive;
 import com.mnr.auction.auction.AuctionList;
 import com.mnr.auction.card.CardType;
 import com.mnr.auction.item.Item;
+import com.mnr.auction.item.ItemType;
 import com.mnr.auction.store.Store;
 import com.mnr.auction.user.User;
 import com.mnr.auction.user.UserCatalog;
@@ -46,8 +47,8 @@ public class Dispatcher {
      * Store Methods
      */
 
-    public void addItemType(String name) {
-        store.addItemType(name);
+    public int addItemType(String name) {
+        return store.addItemType(name);
     }
 
     public void addItem(int itemTypeId, String name, String description, int startPrice) {
