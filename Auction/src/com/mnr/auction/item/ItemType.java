@@ -1,8 +1,12 @@
 package com.mnr.auction.item;
 
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.logging.Logger;
 
 public class ItemType extends Object {
+    private final Logger LOGGER = Logger.getLogger(ItemType.class.getName());
+
     private static int idCounter = 0;
 
     private String name;
@@ -17,10 +21,8 @@ public class ItemType extends Object {
 
     public void addItem(Item item) {
         items.add(item);
-    }
 
-    public void removeItem(Item item) {
-        items.remove(item);
+        LOGGER.info("ITEM CREATED");
     }
 
     public ArrayList<Item> getItemsByQuery(String query) {
@@ -28,6 +30,8 @@ public class ItemType extends Object {
 
         for (Item item : this.items) {
             if (item.matchesQuery(query)) {
+                LOGGER.info("ITEM FOUND");
+
                 items.add(item);
             }
         }
@@ -47,5 +51,15 @@ public class ItemType extends Object {
 
     public int getId() {
         return this.id;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof ItemType) {
+            ItemType itemType = (ItemType) object;
+            return itemType.name.equals(this.name);
+        }
+
+        return false;
     }
 }

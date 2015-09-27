@@ -4,30 +4,33 @@ import com.mnr.auction.item.Item;
 import com.mnr.auction.item.ItemType;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.logging.Logger;
 
 public class Store {
     private final Logger LOGGER = Logger.getLogger(Store.class.getName());
 
-    private HashSet<ItemType> itemTypes;
+    private ArrayList<ItemType> itemTypes;
 
     public Store() {
-        itemTypes = new HashSet<>();
+        itemTypes = new ArrayList<>();
     }
 
     public int addItemType(String name) {
         ItemType itemType = new ItemType(name);
 
-        if (itemTypes.add(itemType)) {
-            LOGGER.info("ITEM TYPE CREATED");
+        for (ItemType existingItemType : itemTypes) {
+            if (itemType.equals(existingItemType)) {
+                LOGGER.warning("ITEM TYPE ALREADY EXIST");
 
-            return itemType.getId();
+                return -1;
+            }
         }
 
-        LOGGER.warning("ITEM TYPE ALREADY EXIST");
+        LOGGER.info("ITEM TYPE CREATED");
 
-        return -1;
+        itemTypes.add(itemType);
+
+        return itemType.getId();
     }
 
     public void addItem(int itemTypeId, String name, String description, int startPrice) {
@@ -36,8 +39,12 @@ public class Store {
                 Item item = new Item(name, description, startPrice);
 
                 itemType.addItem(item);
+
+                return;
             }
         }
+
+        LOGGER.warning("CAN'T CREATE ITEM. INVALID ITEM TYPE ID");
     }
 
     public ArrayList<Item> searchItems(int itemTypeId, String query) {

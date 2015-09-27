@@ -15,8 +15,7 @@ public class Card {
         this.type = type;
     }
 
-    public void makePayement (){
-
+    public void makePayement() {
 
     }
 }
