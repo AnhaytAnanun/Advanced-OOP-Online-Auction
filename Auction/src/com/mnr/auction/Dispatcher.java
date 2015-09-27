@@ -1,6 +1,7 @@
 package com.mnr.auction;
 
 import com.mnr.auction.archive.Archive;
+import com.mnr.auction.auction.Auction;
 import com.mnr.auction.auction.AuctionList;
 import com.mnr.auction.card.CardType;
 import com.mnr.auction.item.Item;
@@ -22,7 +23,6 @@ public class Dispatcher {
     private AuctionList auctionList;
     private UserCatalog userCatalog;
     private Store store;
-    private String winnerToken;
 
     /**
      * Constructor Methods
@@ -33,6 +33,23 @@ public class Dispatcher {
         auctionList = new AuctionList();
         userCatalog = new UserCatalog();
         store = new Store();
+
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    while (true) {
+                        sleep(10000);
+                        ArrayList<Auction> closedAuctions = auctionList.closeAuction();
+
+                        for (Auction auction : closedAuctions) {
+                        }
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 
     /**

@@ -17,6 +17,12 @@ public class AuctionList {
     }
 
     public boolean placeBid (int itemId, User user, float bid){
+        if (user.getCard() == null) {
+            LOGGER.warning("USER DOES NOT HAVE PAYMENT METHOD");
+
+            return false;
+        }
+
         for (Auction auction : auctions) {
             if (auction.getItemId() == itemId) {
                 return auction.placeBid(user, bid);
@@ -36,10 +42,20 @@ public class AuctionList {
         auctions.add(auction);
     }
 
-    public void closeAuction() {
+    public ArrayList<Auction> closeAuction() {
+        ArrayList<Auction> closedAuctions = new ArrayList<>();
+
         for (Auction auction : auctions) {
             if (auction.getStatus() == AuctionStatus.Ended) {
+                LOGGER.info("AUCTION CLOSED");
+
+                User user = auction.getUser();
+                user.getCard().makePayment();
+
+                closedAuctions.add(auction);
             }
         }
+
+        return closedAuctions;
     }
 }

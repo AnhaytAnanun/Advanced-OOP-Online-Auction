@@ -1,8 +1,10 @@
 package com.mnr.auction.card;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
 public class Card {
+    private static Logger LOGGER = Logger.getLogger(Card.class.getName());
 
     private int id;
     private Date date;
@@ -15,7 +17,7 @@ public class Card {
         this.type = type;
     }
 
-    public void makePayement() {
-
+    public void makePayment() {
+        LOGGER.info("PAYMENT MADE");
     }
 }

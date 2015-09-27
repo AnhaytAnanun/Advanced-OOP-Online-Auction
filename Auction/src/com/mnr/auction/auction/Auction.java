@@ -54,6 +54,10 @@ public class Auction {
         return status;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public int getItemId() {
         return this.item.getId();
     }

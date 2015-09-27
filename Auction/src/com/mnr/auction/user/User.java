@@ -20,9 +20,8 @@ public class User {
     private String username;
     private String password;
     private boolean status;
-    private boolean canParticipate;
     private String token;
-    private ArrayList<Card> cards;
+    private Card card;
 
     public User(String email, String username, String password, String address) {
         this.email = email;
@@ -30,9 +29,8 @@ public class User {
         this.password = password;
         this.address = address;
         this.status = false;
-        this.canParticipate = true;
         this.token = null;
-        this.cards = new ArrayList<>();
+        this.card = null;
 
         this.id = idCounter;
         idCounter++;
@@ -58,11 +56,13 @@ public class User {
     }
 
     public void addCard(Date date, int number, CardType type) {
-        Card card = new Card(date, number, type);
+        card = new Card(date, number, type);
 
         LOGGER.info("CARD ADDED");
+    }
 
-        cards.add(card);
+    public Card getCard() {
+        return card;
     }
 
     public boolean canAuth(String token) {

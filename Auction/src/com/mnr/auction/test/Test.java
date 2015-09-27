@@ -111,7 +111,7 @@ public class Test {
 
     private static void addAuction(int itemId) {
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MINUTE, 1);
+        calendar.add(Calendar.SECOND, 5);
 
         Dispatcher.sharedDispatcher().startAuction(new Date(), calendar.getTime(), itemId);
     }
