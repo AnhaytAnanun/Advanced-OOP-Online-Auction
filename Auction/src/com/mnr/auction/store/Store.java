@@ -15,14 +15,14 @@ public class Store {
         itemTypes = new ArrayList<>();
     }
 
-    public int addItemType(String name) {
+    public ItemType addItemType(String name) {
         ItemType itemType = new ItemType(name);
 
         for (ItemType existingItemType : itemTypes) {
             if (itemType.equals(existingItemType)) {
                 LOGGER.warning("ITEM TYPE ALREADY EXIST");
 
-                return -1;
+                return null;
             }
         }
 
@@ -30,21 +30,23 @@ public class Store {
 
         itemTypes.add(itemType);
 
-        return itemType.getId();
+        return itemType;
     }
 
-    public void addItem(int itemTypeId, String name, String description, int startPrice) {
+    public Item addItem(int itemTypeId, String name, String description, int startPrice) {
         for (ItemType itemType : itemTypes) {
             if (itemType.getId() == itemTypeId) {
                 Item item = new Item(name, description, startPrice);
 
                 itemType.addItem(item);
 
-                return;
+                return item;
             }
         }
 
         LOGGER.warning("CAN'T CREATE ITEM. INVALID ITEM TYPE ID");
+
+        return null;
     }
 
     public ArrayList<Item> searchItems(int itemTypeId, String query) {

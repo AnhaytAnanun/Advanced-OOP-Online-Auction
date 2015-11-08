@@ -69,12 +69,12 @@ public class Dispatcher {
      * Store Methods
      */
 
-    public int addItemType(String name) {
+    public ItemType addItemType(String name) {
         return store.addItemType(name);
     }
 
-    public void addItem(int itemTypeId, String name, String description, int startPrice) {
-        store.addItem(itemTypeId, name, description, startPrice);
+    public Item addItem(int itemTypeId, String name, String description, int startPrice) {
+        return store.addItem(itemTypeId, name, description, startPrice);
     }
 
     public ArrayList<Item> searchItems(int itemTypeId, String query) {
@@ -99,16 +99,16 @@ public class Dispatcher {
 
     public void addCard(Date date, int number, CardType type, String token) {
         userCatalog.addCard(date, number, type, token);
-         
+
     }
 
-    public boolean placeBid (int itemId, String token, float bid){
+    public String placeBid (int itemId, String token, float bid){
         User user = userCatalog.getUser(token);
 
         if (user == null) {
             LOGGER.warning("NO USER FOUND");
 
-            return false;
+            return "NOT AUTHENTICATED";
         }
 
         return auctionList.placeBid(itemId, user, bid);

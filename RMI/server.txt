@@ -1,0 +1,3 @@
+Main-Class: helloworld.server.Server
+Class-Path: helloworld/interfaces/HelloWorld.class:.
+

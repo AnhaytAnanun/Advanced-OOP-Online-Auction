@@ -67,7 +67,7 @@ public class Test {
     }
 
     private static int addItemType() {
-        int itemTypeId = Dispatcher.sharedDispatcher().addItemType("Picture");
+        int itemTypeId = Dispatcher.sharedDispatcher().addItemType("Picture").getId();
         Dispatcher.sharedDispatcher().addItemType("Picture");
 
         return itemTypeId;
@@ -90,9 +90,7 @@ public class Test {
     }
 
     private static void placeBid(int itemId, String token, int amount) {
-        if (Dispatcher.sharedDispatcher().placeBid(itemId, token, amount)) {
-            winnerToken = token;
-        }
+        Dispatcher.sharedDispatcher().placeBid(itemId, token, amount);
     }
 
     private static void bidDelayed(final int itemId, final String token, final int amount) {

@@ -27,19 +27,19 @@ public class Auction {
         this.id = idGenerator++;
     }
 
-    synchronized public boolean placeBid (User user, float bid) {
+    synchronized public String placeBid (User user, float bid) {
         if (bid > this.bid && getStatus() == AuctionStatus.Started) {
             this.user = user;
             this.bid = bid;
 
             LOGGER.info("BID PLACED");
 
-            return true;
+            return "BID PLACED";
         }
 
         LOGGER.warning("INVALID BID");
 
-        return false;
+        return "INVALID BID";
     }
 
     public AuctionStatus getStatus () {

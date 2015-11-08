@@ -1,0 +1,3 @@
+Main-Class: helloworld.client.Client
+Class-Path: helloworld/interfaces/HelloWorld.class:.
+

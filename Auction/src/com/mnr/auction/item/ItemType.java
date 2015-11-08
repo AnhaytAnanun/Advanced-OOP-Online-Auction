@@ -1,10 +1,11 @@
 package com.mnr.auction.item;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.logging.Logger;
 
-public class ItemType extends Object {
+public class ItemType extends Object implements Serializable {
     private final Logger LOGGER = Logger.getLogger(ItemType.class.getName());
 
     private static int idCounter = 0;

@@ -1,6 +1,8 @@
 package com.mnr.auction.item;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
     private int idCounter = 0;
 
     private int id;

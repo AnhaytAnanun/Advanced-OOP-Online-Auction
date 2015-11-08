@@ -16,11 +16,11 @@ public class AuctionList {
         auctions = new ArrayList<>();
     }
 
-    public boolean placeBid (int itemId, User user, float bid){
+    public String placeBid (int itemId, User user, float bid){
         if (user.getCard() == null) {
             LOGGER.warning("USER DOES NOT HAVE PAYMENT METHOD");
 
-            return false;
+            return "NO PAYMENT METHOD";
         }
 
         for (Auction auction : auctions) {
@@ -31,7 +31,7 @@ public class AuctionList {
 
         LOGGER.warning("NO AUCTION FOR THIS ITEM");
 
-        return false;
+        return "NO OPEN AUCTION FOR THIS ITEM";
     }
 
     public void startAuction(Date startDate, Date endDate, Item item) {
